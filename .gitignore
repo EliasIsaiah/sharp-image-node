@@ -102,3 +102,5 @@ dist
 
 # TernJS port file
 .tern-port
+# don't commit the files in the images folder, but DO commit the images folder itself
+images/*

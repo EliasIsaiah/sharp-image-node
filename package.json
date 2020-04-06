@@ -1,0 +1,27 @@
+{
+  "name": "sharp-image-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "inquirer": "^7.1.0",
+    "path": "^0.12.7",
+    "sharp": "^0.25.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EliasIsaiah/sharp-image-node.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EliasIsaiah/sharp-image-node/issues"
+  },
+  "homepage": "https://github.com/EliasIsaiah/sharp-image-node#readme"
+}
