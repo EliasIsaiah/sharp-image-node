@@ -29,7 +29,7 @@ ResizeImage = (imagePath) => {
     })
 }
 
-async function PromiseGetImages() {
+ PromiseGetImages = async () => {
     const files = await fsPromises.readdir("./images");
     const images = files.filter(image => {
         console.log(`path.extname(image) returns ${path.extname(image)}`);
