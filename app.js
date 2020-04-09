@@ -18,18 +18,18 @@ ResizeImage = (imagePath) => {
     imagePath = path.join("images", imagePath);
     console.log(`imagePath: ${imagePath}`);
     sharp(imagePath)
-    .resize(200)
-    .jpeg()
-    .toFile(`RESIZED_${imagePath}`)
-    .then((data) => {
-        console.log(`data: ${data}`);
-    })
-    .catch( err => {
-        console.log(`error: ${err}`);
-    })
+        .resize(200)
+        .jpeg()
+        .toFile(`RESIZED_${imagePath}`)
+        .then((data) => {
+            console.log(`data: ${data}`);
+        })
+        .catch(err => {
+            console.log(`error: ${err}`);
+        })
 }
 
- PromiseGetImages = async () => {
+PromiseGetImages = async () => {
     const files = await fsPromises.readdir("./images");
     const images = files.filter(image => {
         console.log(`path.extname(image) returns ${path.extname(image)}`);
@@ -38,7 +38,7 @@ ResizeImage = (imagePath) => {
     })
 
     // for (const image of images) {
-        // console.log(image)
+    // console.log(image)
     // }
 }
 
