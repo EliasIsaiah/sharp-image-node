@@ -6,14 +6,6 @@ const inquirer = require('inquirer');
 
 const allowedTypes = [".jpg"]
 
-// const ResizeImages = () => {
-//     return new Promise((resolve, reject) => {
-//         fs.readdir("./images", (error, files) => {
-//             error ? reject(error) : resolve(files);
-//         });
-//     });
-// }
-
 ResizeImage = (imagePath) => {
     imagePath = path.join("images", imagePath);
     console.log(`imagePath: ${imagePath}`);
