@@ -20,9 +20,9 @@ ResizeImage = (imagePath) => {
     sharp(imagePath)
         .resize(200)
         .jpeg()
-        .toFile(`RESIZED_${imagePath}`)
+        .toFile(path.join("RESIZED_images", `RESIZED_${path.basename(imagePath)}`))
         .then((data) => {
-            console.log(`data: ${data}`);
+            console.log("data",data);
         })
         .catch(err => {
             console.log(`error: ${err}`);
@@ -31,15 +31,10 @@ ResizeImage = (imagePath) => {
 
 PromiseGetImages = async () => {
     const files = await fsPromises.readdir("./images");
-    const images = files.filter(image => {
+    files.filter(image => {
         console.log(`path.extname(image) returns ${path.extname(image)}`);
         allowedTypes.includes(path.extname(image).toLowerCase()) ? ResizeImage(image) : console.log(`${image} is not allowed type`);
-        // console.log(`allowedTypes.includes(path.extname(image).toLowerCase()) returns ${allowedTypes.includes(path.extname(image).toLowerCase())}`);
     })
-
-    // for (const image of images) {
-    // console.log(image)
-    // }
 }
 
 const Start = () => {
