@@ -23,8 +23,7 @@ ResizeImage = (imagePath) => {
 
 PromiseGetImages = async () => {
     const files = await fsPromises.readdir("./images");
-    files.filter(image => {
-        console.log(`path.extname(image) returns ${path.extname(image)}`);
+    files.map(image => {
         allowedTypes.includes(path.extname(image).toLowerCase()) ? ResizeImage(image) : console.log(`${image} is not allowed type`);
     })
 }
