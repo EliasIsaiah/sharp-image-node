@@ -5,20 +5,24 @@ const sharp = require('sharp');
 const inquirer = require('inquirer');
 
 const allowedTypes = [".jpg"]
+let sizes = [1000, 500, 200]
 
 ResizeImage = (imagePath) => {
     imagePath = path.join("images", imagePath);
     console.log(`imagePath: ${imagePath}`);
-    sharp(imagePath)
-        .resize(200)
-        .jpeg()
-        .toFile(path.join("RESIZED_images", `RESIZED_${path.basename(imagePath)}`))
-        .then((data) => {
-            console.log("data",data);
-        })
-        .catch(err => {
-            console.log(`error: ${err}`);
-        })
+    sizes.map((size) => {
+
+        sharp(imagePath)
+            .resize(size)
+            .jpeg()
+            .toFile(path.join("RESIZED_images", `RESIZED_${size}_${path.basename(imagePath)}`))
+            .then((data) => {
+                console.log("data", data);
+            })
+            .catch(err => {
+                console.log(`error: ${err}`);
+            })
+    })
 }
 
 PromiseGetImages = async () => {
