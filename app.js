@@ -37,7 +37,7 @@ const Start = () => {
         type: "list",
         name: "command",
         message: "What would you like to do?",
-        choices: ["Resize images"]
+        choices: ["make images smaller"]
     }]).then((answers) => {
         console.log(answers);
         PromiseGetImages();
