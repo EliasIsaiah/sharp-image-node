@@ -13,6 +13,7 @@ ResizeImage = (imagePath) => {
     sizes.map((size) => {
 
         sharp(imagePath)
+            .toFormat("jpeg")
             .resize(size)
             .jpeg()
             .toFile(path.join("RESIZED_images", `RESIZED_${size}_${path.basename(imagePath)}`))
@@ -25,12 +26,41 @@ ResizeImage = (imagePath) => {
     })
 }
 
-PromiseGetImages = async () => {
-    const files = await fsPromises.readdir("./images");
-    files.map(image => {
-        allowedTypes.includes(path.extname(image).toLowerCase()) ? ResizeImage(image) : console.log(`${image} is not allowed type`);
-    })
+PromiseGetImages = async function () {
+    try {
+        try {
+            const fileStats = await fsPromises.stat("./images");
+            console.log(fileStats);
+        } catch (error) {
+            switch (error.code) {
+                case "ENOENT":
+                    await fsPromises.mkdir("./images");
+                    break;
+                default:
+                    throw error;
+            }
+        }
+        const files = await fsPromises.readdir("./images");
+        files.map(image => {
+            allowedTypes.includes(path.extname(image).toLowerCase()) ? ResizeImage(image) : console.log(`${image} is not allowed type`);
+        })
+    } catch (error) { console.log(error); }
 }
+
+const questions = [
+    {
+        type: "list",
+        name: "command",
+        message: "What would you like to do?",
+        choices: ["make images smaller"]
+    },
+    {
+        type: "list",
+        name: "size",
+        message: "What width would you like your images to be? (Height automatically scales)",
+        choices: ["3840", "2560", "1920", "1366", "1024", "other"]
+    }
+]
 
 const Start = () => {
     inquirer.prompt([{
